@@ -10,43 +10,48 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.project2.databinding.ActivityPtbac2Binding
 import kotlin.math.sqrt
 
 class GiaiPtBac2 : AppCompatActivity() {
-    lateinit var btnGiai: Button
-    lateinit var btnXoa: Button
-    lateinit var numA: EditText
-    lateinit var numB: EditText
-    lateinit var numC: EditText
-    lateinit var ketQua: TextView
+//    lateinit var btnGiai: Button
+//    lateinit var btnXoa: Button
+//    lateinit var numA: EditText
+//    lateinit var numB: EditText
+//    lateinit var numC: EditText
+//    lateinit var ketQua: TextView
+    lateinit var binding: ActivityPtbac2Binding
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_ptbac2)
-        controls()
+//        setContentView(R.layout.activity_ptbac2)
+        binding = ActivityPtbac2Binding.inflate(layoutInflater)
+        setContentView(binding.root)
+//        controls()
         events()
     }
 
     private fun controls() {
-        numA = findViewById(R.id.edtNumA)
-        numB = findViewById(R.id.edtNumB)
-        numC = findViewById(R.id.edtNumC)
-        btnGiai = findViewById(R.id.btnGiai)
-        btnXoa = findViewById(R.id.btnXoa)
-        ketQua = findViewById(R.id.ketQua)
+//        numA = findViewById(R.id.edtNumA)
+//        numB = findViewById(R.id.edtNumB)
+//        numC = findViewById(R.id.edtNumC)
+//        btnGiai = findViewById(R.id.btnGiai)
+//        btnXoa = findViewById(R.id.btnXoa)
+//        ketQua = findViewById(R.id.ketQua)
     }
 
     private fun events() {
-        btnGiai.setOnClickListener {
-            val aStr = numA.text.toString()
-            val bStr = numB.text.toString()
-            val cStr = numC.text.toString()
+        binding.btnGiai.setOnClickListener {
+            val aStr = binding.edtNumA.text.toString()
+            val bStr = binding.edtNumB.text.toString()
+            val cStr = binding.edtNumC.text.toString()
 
             // Kiểm tra input có trống không
             if (aStr.isEmpty() || bStr.isEmpty() || cStr.isEmpty()) {
-                Toast.makeText(this, "Vui lòng nhập đầy đủ hệ số!", Toast.LENGTH_SHORT).show()
+                showToast("Vui lòng nhập đầy đủ hệ số!")
                 return@setOnClickListener
             }
 
@@ -56,12 +61,12 @@ class GiaiPtBac2 : AppCompatActivity() {
 
             // Kiểm tra giá trị nhập có hợp lệ không
             if (a == null || b == null || c == null) {
-                Toast.makeText(this, "Vui lòng nhập số hợp lệ!", Toast.LENGTH_SHORT).show()
+                showToast("Vui lòng nhập số hợp lệ!")
                 return@setOnClickListener
             }
 
             val result = tinhPtBac2(a, b, c)
-            var intent = Intent(applicationContext, MainActivity2::class.java)
+            val intent = Intent(applicationContext, MainActivity2::class.java)
             intent.putExtra("ptb2", result)
             startActivityForResult(intent, 1)
 
@@ -71,11 +76,11 @@ class GiaiPtBac2 : AppCompatActivity() {
         }
 
 
-        btnXoa.setOnClickListener {
-            numA.text.clear()
-            numB.text.clear()
-            numC.text.clear()
-            ketQua.text = ""
+        binding.btnXoa.setOnClickListener {
+            binding.edtNumA.text?.clear()
+            binding.edtNumB.text?.clear()
+            binding.edtNumC.text?.clear()
+            binding.ketQua.text = ""
             hideKeyboarch()
             showToast("Đã xóa thành công")
         }
@@ -86,7 +91,7 @@ class GiaiPtBac2 : AppCompatActivity() {
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             val resultReply = data?.getStringExtra("reply")
-            ketQua.text = resultReply ?: "Không có kết quả"
+            binding.ketQua.text = resultReply ?: "Không có kết quả"
         }
     }
 
