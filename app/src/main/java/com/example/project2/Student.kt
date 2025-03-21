@@ -1,7 +1,8 @@
 package com.example.project2
 
-open class Student(var id:Int, var name:String) {
-    open fun getInfo():String {
-        return "$id, name"
+class Student(var id: String = "", var name:String = "") : java.io.Serializable {
+    override fun toString(): String {
+        return "$id$name"
     }
+
 }

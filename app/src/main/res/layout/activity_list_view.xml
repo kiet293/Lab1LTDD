@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="12dp"
     android:gravity="center_horizontal"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -21,7 +21,16 @@
         />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/txtInput"
+        android:id="@+id/inputID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:hint="Enter ID"
+        android:layout_margin="8dp"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inputName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
@@ -48,6 +57,13 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="Remove" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnUpdate"
@@ -57,13 +73,21 @@
             android:layout_margin="8dp"
             />
 
+        <Button
+            android:id="@+id/btnAdvance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Advance" />
+
     </LinearLayout>
 
     <ListView
         android:id="@+id/listStudent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:divider="#BBBBD7"
+        android:dividerHeight="1dp"
+        android:listSelector="#D2B48C"
         />
-
-
 </LinearLayout>
